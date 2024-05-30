@@ -11,7 +11,6 @@ class BaseModel:
             updated_at(str): time instance was updated
     """
     def __init__(self, id=None, created_at, updated_at):
-
         self.id = str(uuid.uuid4())
         self.created_at = datetime.datetime.now().isoformat()
         self.updated_at = datetime.datetime.now().isoformat()
@@ -34,5 +33,3 @@ class BaseModel:
             "created_at": self.created_at,
             "updated_a t": self.updated_at,
             "__class__": self.__class__.__name__,
-
-        }
