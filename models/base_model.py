@@ -11,16 +11,6 @@ class BaseModel:
             updated_at(str): time instance was updated
     """
     def __init__(self, id=None, created_at, updated_at):
-        
-        if kwargs:
-    excluded_keys = ['__class__']
-    for key, value in kwargs,items():
-            if key not in excluded_keys:
-                if isinstance(value, str) and (key == 'created_at' or key == 'updated_at'):
-                    value = datetime.datetime.strptime(value, '%Y-%m-%dT%H:%M:%S.%f')
-            setattr(self, key, value)
-            else
-
         self.id = str(uuid.uuid4())
         self.created_at = datetime.datetime.now().isoformat()
         self.updated_at = datetime.datetime.now().isoformat()
@@ -43,6 +33,3 @@ class BaseModel:
             "created_at": self.created_at,
             "updated_a t": self.updated_at,
             "__class__": self.__class__.__name__,
-
-        }
-
