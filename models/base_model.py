@@ -11,9 +11,10 @@ class BaseModel:
             updated_at(str): time instance was updated
     """
     def __init__(self, id=None, created_at, updated_at):
-        self.id
-        self.created_at
-        self.updated_at
+
+        self.id = str(uuid.uuid4())
+        self.created_at = datetime.datetime.now().isoformat()
+        self.updated_at = datetime.datetime.now().isoformat()
 
     """ methods/setters/getters """
 
@@ -22,10 +23,12 @@ class BaseModel:
     
     def save(self):
         """updates updated_at attribute"""
-        pass
+
+        self.updated_at = datetime.now().isoformat()
 
     def to_dict(self):
         """ returns dictionary keyword/value representations of attributes"""
+
         return {
             "id": self.id,
             "created_at": self.created_at,
