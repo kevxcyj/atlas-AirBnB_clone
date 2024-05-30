@@ -19,13 +19,14 @@ class BaseModel:
             for key, value in kwargs.items():
                 if key not in excluded_keys:
                     if isinstance(value, str) and (key == 'created_at' or key == 'updated_at'):
-                        value = datetime.strptime(value, '%Y-%m-%dT%H:%M:%S.%f')
+                        value = datetime.fromisoformat(value)
                     setattr(self, key, value)
 
         else:
 
                     self.id = str(uuid.uuid4())
                     self.created_at = datetime.now().isoformat()
+                    self.updated_at = None
 
     """ methods/setters/getters """
 
@@ -45,7 +46,7 @@ class BaseModel:
             "my_number": self.my_number,
             "id": self.id,
             "created_at": self.created_at,
-            "updated_a t": self.updated_at,
+            "updated_at": self.updated_at,
             "__class__": self.__class__.__name__,
 
         }
