@@ -24,3 +24,14 @@ self.updated_at = datetime.now().isoformat()
 
 
 
+if kwargs:
+    excluded_keys = ['__class__']
+    for key, value in kwargs,items():
+            if key not in excluded_keys:
+                if isinstance(value, str) and (key == 'created_at' or key == 'updated_at'):
+                    value = datetime.datetime.strptime(value, '%Y-%m-%dT%H:%M:%S.%f')
+            setattr(self, key, value)
+
+        else 
+
+            
