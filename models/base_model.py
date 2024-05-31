@@ -3,6 +3,7 @@
 import datetime
 import uuid
 
+
 class BaseModel:
     """ BaseModel class that is to be inherited by other models
 
@@ -13,13 +14,20 @@ class BaseModel:
             name(str): name of instance
             my_number(int): number given to instance
     """
-    def __init__(self, name=None, my_number=0, created_at=None, updated_at=None, id=None):
+    def __init__(self, *args, **kwargs):
+        if kwargs:
+            excluded_keys = ['__class__']
+            for key, value in kwargs.items():
+                if key not in excluded_keys:
+                    if isinstance(value, str) and (key == 'created_at' or key == 'updated_at'):
+                        value = datetime.fromisoformat(value)
+                    setattr(self, key, value)
 
-        self.name = name
-        self.my_number = my_number
-        self.id = id if id else str(uuid.uuid4())
-        self.created_at = created_at if created_at else datetime.datetime.now().isoformat()
-        self.updated_at = updated_at if updated_at else datetime.datetime.now().isoformat()
+        else:
+
+                    self.id = str(uuid.uuid4())
+                    self.created_at = datetime.now().isoformat()
+                    self.updated_at = None
 
     """ methods/setters/getters """
 
@@ -39,7 +47,7 @@ class BaseModel:
             "my_number": self.my_number,
             "id": self.id,
             "created_at": self.created_at,
-            "updated_a t": self.updated_at,
+            "updated_at": self.updated_at,
             "__class__": self.__class__.__name__,
 
         }
