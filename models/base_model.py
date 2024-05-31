@@ -27,6 +27,7 @@ class BaseModel:
 
                     self.id = str(uuid.uuid4())
                     self.created_at = datetime.datetime.now()
+                    self.updated_at = datetime.datetime.now()
 
     """ methods/setters/getters """
 
@@ -42,11 +43,11 @@ class BaseModel:
         """ returns dictionary keyword/value representations of attributes"""
 
         return {
-            "name": self.name,
             "my_number": self.my_number,
+            "name": self.name,
+            "__class__": self.__class__.__name__,
+            "updated_at": self.updated_at.isoformat(),
             "id": self.id,
             "created_at": self.created_at.isoformat(),
-            "updated_at": self.updated_at.isoformat(),
-            "__class__": self.__class__.__name__,
 
         }
