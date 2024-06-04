@@ -4,6 +4,9 @@
 import json
 import os
 from models.base_model import BaseModel
+from models.user import User
+
+
 class FileStorage:
     """class FileStorage
 
@@ -42,7 +45,7 @@ class FileStorage:
 
     def reload(self):
         """ it deserializes the json file back into a dictionary."""
-        if os.path.exists(self.__file_path):
+        try:
             with open(self.__file_path, "r") as file:
                 json_str = file.read()
                 loaded_data = json.loads(json_str)
@@ -51,5 +54,5 @@ class FileStorage:
                     class_name, obj_id = key.split(' + ')
                     class_instance = globals()[class_name](**value)
                     self.__objects[key] = class_instance
-        else:
+        except FileNotFoundError:
             pass
