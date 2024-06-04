@@ -36,18 +36,24 @@ class HBNBCommand(cmd.Cmd):
         return True
 
     def do_create(self, line):
-        args = line.split()
-        if len(args)!= 1:
+         if len(line.split()) < 2:
             print("** class name missing **")
             return
-        className = args[0]
-        if className not in storage.classes:
+
+        cls_name = line.split()[1]
+        try:
+            cls = globals()[cls_name]
+        except KeyError:
             print("** class doesn't exist **")
             return
-        else:
-            new_instance = eval(args[0])().id
-            new_instance.save()
-            print(eval(args[0])().id)
+
+        if not issubclass(cls, BaseModel) or not hasattr(cls, "save"):
+            print("** class doesn't inherit from BaseModel **")
+            return
+
+        obj = cls()
+        obj.save()
+        print(obj.id)
 
     def do_show(self, line):
         args = line.split()
