@@ -6,7 +6,7 @@ from models import storage
 class HBNBCommand(cmd.Cmd):
     prompt = '(hbnb)'
 
-    def default(self, line):
+    def handle_empty_line(self, line):
         """ Handles empty lines """
         return False
 
