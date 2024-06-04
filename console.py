@@ -18,9 +18,9 @@ current_classes = {'BaseModel': BaseModel, 'User': User,
 class HBNBCommand(cmd.Cmd):
     prompt = '(hbnb)'
 
-    def handle_empty_line(self, line):
+    def handle_empty_line(self):
         """ Handles empty lines """
-        return False
+        pass
 
     def do_quit(self, line):
         """ Command to exit program """
