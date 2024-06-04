@@ -10,15 +10,15 @@ class HBNBCommand(cmd.Cmd):
         """ Handles empty lines """
         return False
 
-    def do_quit(self, line):
+    def quit_cmd(self, line):
         """ Command to exit program """
         return True
 
-    def do_EOF(self, line):
+    def EOF_cmd(self, line):
         """" Command to exit the program on EOF """
         return True
 
-    def do_create(self, line):
+    def create_cmd(self, line):
         args = line.split()
         if len(args)!= 1:
             print("** class name missing **")
@@ -30,6 +30,25 @@ class HBNBCommand(cmd.Cmd):
         obj = storage.new(className)
         obj.save()
         print(obj.id)
+
+    def show_cmd(self, line):
+        args = line.split()
+        if len(args) < 2:
+            print("** class name missing **")
+            return
+        className = args[0]
+        if className not in storage.classes:
+            print("** class doesn't exist **")
+            return
+        if len(args) < 3:
+            print("** instance id missing **")
+            return
+        objectId = args[1]
+        obj = storage.get(className, objectId)
+        if obj is None:
+            print("** no instance found **")
+            return
+        print(str(obj))
 
 if __name__ == '__main__':
     HBNBCommand().cmdloop()
