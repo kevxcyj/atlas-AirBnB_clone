@@ -29,11 +29,8 @@ class BaseModel:
                     self.id = str(uuid.uuid4())
                     self.created_at = datetime.datetime.now()
                     self.updated_at = datetime.datetime.now()
-
-        super().__init__(*args, **kwargs)
-        if storage is not None:
-            storage.new(self)
-    
+                    storage.new(self)
+                    
     """ methods/setters/getters """
 
     def __str__(self):
