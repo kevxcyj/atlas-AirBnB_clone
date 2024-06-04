@@ -9,11 +9,11 @@ class HBNBCommand(cmd.Cmd):
         """ """
         pass
 
-    def do_quit(self, arg):
+    def do_quit(self, line):
         """ Command to exit program """
         return True
 
-    def do_EOF(self, arg):
+    def do_EOF(self, line):
         """" Command to exit the program on EOF """
         return True
 
