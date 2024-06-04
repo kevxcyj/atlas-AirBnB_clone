@@ -12,7 +12,7 @@ from models.amenity import Amenity
 from models.place import Place
 import models
 
-current_classes = {'BaseModel': BaseModel, 'User:' User,
+current_classes = {'BaseModel': BaseModel, 'User': User,
                     'Amenity': Amenity, 'City': City, 'State': State,
                     'Place': Place, 'Review': Review}
 
