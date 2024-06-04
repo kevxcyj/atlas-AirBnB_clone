@@ -2,7 +2,7 @@
 """ module: base model class """
 import datetime
 import uuid
-
+from __init__ import storage
 
 class BaseModel:
     """ BaseModel class that is to be inherited by other models
@@ -29,6 +29,10 @@ class BaseModel:
                     self.created_at = datetime.datetime.now()
                     self.updated_at = datetime.datetime.now()
 
+        super().__init__(*args, **kwargs)
+        if storage is not None:
+            storage.new(self)
+    
     """ methods/setters/getters """
 
     def __str__(self):
@@ -38,6 +42,9 @@ class BaseModel:
         """updates updated_at attribute"""
 
         self.updated_at = datetime.datetime.now()
+
+        """ Import storage and save method """
+        storage.save()
 
     def to_dict(self):
         """ returns dictionary keyword/value representations of attributes"""
