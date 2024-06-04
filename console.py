@@ -62,6 +62,15 @@ class HBNBCommand(cmd.Cmd):
             print("** no instance found **")
             return
         del self.storage.instances[className][id]
-    
+
+   def do_all(self, args):
+        if len(args) > 0 and args[0]!= "BaseModel":
+            print("** class doesn't exist **")
+            return
+        for className in self.storage.classes:
+            for obj_id, obj in self.storage.instances[className].items():
+                print("[{}] ({}) {}".format(className, obj_id, obj)) 
+
+
 if __name__ == '__main__':
     HBNBCommand().cmdloop()
