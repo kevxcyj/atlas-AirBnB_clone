@@ -51,7 +51,7 @@ class FileStorage:
                 loaded_data = json.loads(json_str)
                 self.__objects.clear()
                 for key, value in loaded_data.items():
-                    class_name, obj_id = key.split(' + ')
+                    class_name, obj_id = key.split('.')
                     class_instance = globals()[class_name](**value)
                     self.__objects[key] = class_instance
         except FileNotFoundError:
