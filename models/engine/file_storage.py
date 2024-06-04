@@ -12,7 +12,7 @@ class FileStorage:
             __objects: dictionary, keys/instances of objects to be converted
     """
 
-    def __init__(self, file_path="", objects=""):
+    def __init__(self, file_path="", objects={}):
         self.__file_path = file_path
         self.__objects = objects
 
