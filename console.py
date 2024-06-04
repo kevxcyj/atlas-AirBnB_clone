@@ -37,15 +37,17 @@ class HBNBCommand(cmd.Cmd):
 
     def do_create(self, line):
         args = line.split()
-        if len(commands) == 0:
+        if len(args)!= 1:
             print("** class name missing **")
-        elif commands[0] not in self.valid_classes:
+            return
+        className = args[0]
+        if className not in HBNBCommand.current_classes:
             print("** class doesn't exist **")
+            return
         else:
-            new_instance = eval(f"{commands[0]}()")
-            storage.save()
-            print(new_instance.id)
-
+            new_instance = eval(args[0])().id
+            new_instance.save()
+            print(eval(args[0])().id)
 
     def do_show(self, line):
         args = line.split()
