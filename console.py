@@ -40,7 +40,7 @@ class HBNBCommand(cmd.Cmd):
             print("** class doesn't exist **")
             return
         else:
-            new_instance = eval(args[0])().id)
+            new_instance = eval(args[0])().id
             new_instance.save()
             print(eval(args[0])().id)
 
