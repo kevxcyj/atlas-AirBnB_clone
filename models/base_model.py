@@ -3,6 +3,7 @@
 import datetime
 import uuid
 from __init__ import storage
+import models
 
 class BaseModel:
     """ BaseModel class that is to be inherited by other models
@@ -44,7 +45,8 @@ class BaseModel:
         self.updated_at = datetime.datetime.now()
 
         """ Import storage and save method """
-        storage.save()
+        models.storage.new(self)
+        models.storage.save()
 
     def to_dict(self):
         """ returns dictionary keyword/value representations of attributes"""
@@ -56,3 +58,4 @@ class BaseModel:
             "created_at": self.created_at.isoformat(),
 
         }
+
