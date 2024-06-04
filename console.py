@@ -7,7 +7,7 @@ class HBNBCommand(cmd.Cmd):
 
     def default(self, line):
         """ Handles empty lines """
-        pass
+        return False
 
     def do_quit(self, line):
         """ Command to exit program """
