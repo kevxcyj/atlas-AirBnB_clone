@@ -43,8 +43,6 @@ class BaseModel:
         """ returns dictionary keyword/value representations of attributes"""
 
         return {
-            "my_number": self.my_number,
-            "name": self.name,
             "__class__": self.__class__.__name__,
             "updated_at": self.updated_at.isoformat(),
             "id": self.id,
