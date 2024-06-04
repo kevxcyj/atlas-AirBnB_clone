@@ -11,12 +11,12 @@ from models.amenity import Amenity
 from models.place import Place
 import models
 
-current_classes = {'BaseModel': BaseModel, 'User': User,
-                    'Amenity': Amenity, 'City': City, 'State': State,
-                    'Place': Place}
 
 class HBNBCommand(cmd.Cmd):
     prompt = '(hbnb)'
+    current_classes = {'BaseModel', 'User',
+                    'Amenity', 'City', 'State',
+                    'Place'}
 
     def handle_empty_line(self):
         """ Handles empty lines """
@@ -41,7 +41,7 @@ class HBNBCommand(cmd.Cmd):
             print("** class name missing **")
             return
         className = args[0]
-        if className not in storage.classes:
+        if className not in HBNBCommand.current_classes:
             print("** class doesn't exist **")
             return
         else:
@@ -55,7 +55,7 @@ class HBNBCommand(cmd.Cmd):
             print("** class name missing **")
             return
         className = args[0]
-        if className not in storage.classes:
+        if className not in HBNBCommand.current_classes:
             print("** class doesn't exist **")
             return
         if len(args) < 3:
@@ -73,7 +73,7 @@ class HBNBCommand(cmd.Cmd):
             print("** class name missing **")
             return
         className, id = args[:2]
-        if className not in self.storage.classes:
+        if className not in HBNBCommand.current_classes:
             print("** class doesn't exist **")
             return
         if id not in self.storage.instances[className]:
