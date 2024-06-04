@@ -3,7 +3,7 @@
     and deserializng object instances/json files"""
 import json
 import os
-
+from models.base_model import BaseModel
 class FileStorage:
     """class FileStorage
 
@@ -15,9 +15,8 @@ class FileStorage:
     def __init__(self, file_path='new.json', objects={}):
         self.__file_path = file_path
         self.__objects = objects
-        self.classes = {}
 
-        """methods/setters/getters"""
+    """methods/setters/getters"""
 
     def all(self):
         """returns the object dictionaries"""
@@ -32,7 +31,6 @@ class FileStorage:
         key = f'{obj.__class__.__name__} + {obj.id}'
         self.__objects[key] = obj
 
-    @classmethod
     def save(self):
         """ writes the json str representation to classname.json """
         obj_dict = dict()
@@ -46,8 +44,11 @@ class FileStorage:
         if os.path.exists(self.__file_path):
             with open(self.__file_path, "r") as file:
                 json_str = file.read()
-                list_dicts = json.loads(json_str)
-                for dict in list_dicts:
-                    self.__objects.update(dict)
+                loaded_data = json.loads(json_str)
+                self.__objects.clear()
+                for key, value in loaded_data.items():
+                    class_name, obj_id = key.split(' + ')
+                    class_instance = globals()[class_name](**value)
+                    self.__objects[key] = class_instance
         else:
             pass
