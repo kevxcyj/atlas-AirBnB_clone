@@ -36,11 +36,11 @@ class HBNBCommand(cmd.Cmd):
         return True
 
     def do_create(self, line):
-         if len(line.split()) < 2:
+        if len(line.split()) < 2:
             print("** class name missing **")
             return
 
-            cls_name = line.split()[1]
+        cls_name = line.split()[1]
         try:
             cls = globals()[cls_name]
         except KeyError:
