@@ -15,6 +15,7 @@ class FileStorage:
     def __init__(self, file_path='new.json', objects={}):
         self.__file_path = file_path
         self.__objects = objects
+        self.classes = {}
 
         """methods/setters/getters"""
 
