@@ -3,7 +3,7 @@
 import cmd
 
 class HBNBCommand(cmd.Cmd):
-    prompt = "(hbnb)"
+    prompt = '(hbnb)'
 
     def default(self, line):
         """ Handles empty lines """
