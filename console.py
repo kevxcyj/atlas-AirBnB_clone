@@ -71,6 +71,23 @@ class HBNBCommand(cmd.Cmd):
             for obj_id, obj in self.storage.instances[className].items():
                 print("[{}] ({}) {}".format(className, obj_id, obj)) 
 
+    def do_update(self,args):
+        if len(args) < 3:
+            print("** class name missing **")
+            return
+        className, id, attr_name, attr_value = args[:4]
+        if className not in self.storage.classes:
+            print("** class doesn't exist **")
+            return
+        if id not in self.storage.classes:
+            print(" ** no instance found **")
+            return
+        if attr_name not in self.storage.instances[className][id]:
+            print("** attribute name missing **")
+            return
+
+        self.storage.instances[className][id][attr_name] = attr_value
+    
 
 if __name__ == '__main__':
     HBNBCommand().cmdloop()
