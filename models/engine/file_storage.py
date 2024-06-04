@@ -44,3 +44,5 @@ class FileStorage:
                 list_dicts = json.loads(json_str)
                 for dict in list_dicts:
                     self.__objects.update(dict)
+        else:
+            pass
