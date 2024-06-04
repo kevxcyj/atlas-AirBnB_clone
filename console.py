@@ -63,7 +63,7 @@ class HBNBCommand(cmd.Cmd):
             return
         del self.storage.instances[className][id]
 
-   def do_all(self, args):
+    def do_all(self, args):
         if len(args) > 0 and args[0]!= "BaseModel":
             print("** class doesn't exist **")
             return
