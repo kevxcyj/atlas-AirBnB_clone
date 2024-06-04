@@ -29,10 +29,10 @@ class HBNBCommand(cmd.Cmd):
         className = args[0]
         if className not in storage.classes:
             print("** class doesn't exist **")
-            return
-        obj = storage.new(className)
-        obj.save()
-        print(obj.id)
+        else:
+            print(eval(args[0])().id)
+            storage.save()
+            
 
     def do_show(self, line):
         args = line.split()
