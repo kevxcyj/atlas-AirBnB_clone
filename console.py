@@ -13,7 +13,7 @@ import models
 
 current_classes = {'BaseModel': BaseModel, 'User': User,
                     'Amenity': Amenity, 'City': City, 'State': State,
-                    'Place': Place, 'Review': Review}
+                    'Place': Place}
 
 class HBNBCommand(cmd.Cmd):
     prompt = '(hbnb)'
