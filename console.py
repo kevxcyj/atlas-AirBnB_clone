@@ -1,5 +1,5 @@
 #!/bin/usr/python3
-
+""" Contains the entry point of the command interperter """
 import cmd
 
 class HBNBCommand(cmd.Cmd):
