@@ -1,6 +1,7 @@
 #!/usr/bin/python3
 """ Contains the entry point of the command interperter """
 import cmd
+import json
 from models import storage
 
 class HBNBCommand(cmd.Cmd):
