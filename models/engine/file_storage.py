@@ -31,6 +31,7 @@ class FileStorage:
         key = f'{obj.__class__.__name__} + {obj.id}'
         self.__objects[key] = obj
 
+    @classmethod
     def save(self):
         """ writes the json str representation to classname.json """
         obj_dict = dict()
