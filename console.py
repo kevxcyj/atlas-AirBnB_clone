@@ -46,14 +46,10 @@ class HBNBCommand(cmd.Cmd):
         except KeyError:
             print("** class doesn't exist **")
             return
-
-        if not issubclass(cls, BaseModel) or not hasattr(cls, "save"):
-            print("** class doesn't inherit from BaseModel **")
-            return
-
-        obj = cls()
-        obj.save()
-        print(obj.id)
+        else:
+            new_instance = eval(args[0])().id
+            new_instance.save()
+            print(eval(args[0])().id)
 
     def do_show(self, line):
         args = line.split()
