@@ -50,5 +50,18 @@ class HBNBCommand(cmd.Cmd):
             return
         print(str(obj))
 
+    def do_destroy(self, args):
+        if len(args) < 2:
+            print("** class name missing **")
+            return
+        className, id = args[:2]
+        if className not in self.storage.classes:
+            print("** class doesn't exist **")
+            return
+        if id not in self.storage.instances[className]:
+            print("** no instance found **")
+            return
+        del self.storage.instances[className][id]
+    
 if __name__ == '__main__':
     HBNBCommand().cmdloop()
