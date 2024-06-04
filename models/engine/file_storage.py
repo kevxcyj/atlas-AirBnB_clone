@@ -12,7 +12,7 @@ class FileStorage:
             __objects: dictionary, keys/instances of objects to be converted
     """
 
-    def __init__(self, file_path="file.json", objects={}):
+    def __init__(self, file_path='new.json', objects={}):
         self.__file_path = file_path
         self.__objects = objects
 
@@ -28,13 +28,16 @@ class FileStorage:
             variables:
                 obj(class instance): instance of a class
         """
-        self.__objects = {obj.__class__.__name__.id: obj}
+        key = f'{obj.__class__.__name__} + {obj.id}'
+        self.__objects[key] = obj
 
     def save(self):
         """ writes the json str representation to classname.json """
-        file = self.__class__.__file_path
-        with open(file, "w") as f:
-            json.dump(list(self.__objects.values()), f)
+        obj_dict = dict()
+        for key, value in self.__objects.items():
+            obj_dict[key] = self.__objects[key].to_dict()
+        with open (self.__class__.__file_path, "w") as f:
+            f.write(json.dumps(obj_dict))
 
     def reload(self):
         """ it deserializes the json file back into a dictionary."""

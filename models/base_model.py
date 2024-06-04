@@ -2,7 +2,7 @@
 """ module: base model class """
 import datetime
 import uuid
-from __init__ import storage
+from models import storage
 import models
 
 class BaseModel:
@@ -58,4 +58,3 @@ class BaseModel:
             "created_at": self.created_at.isoformat(),
 
         }
-
