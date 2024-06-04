@@ -40,7 +40,7 @@ class HBNBCommand(cmd.Cmd):
             print("** class name missing **")
             return
 
-        cls_name = line.split()[1]
+            cls_name = line.split()[1]
         try:
             cls = globals()[cls_name]
         except KeyError:
