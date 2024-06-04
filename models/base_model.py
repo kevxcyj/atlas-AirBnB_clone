@@ -1,7 +1,8 @@
 #!/usr/bin/python3
 """ module: base model class """
-from datetime import datetime
+import datetime
 import uuid
+
 
 class BaseModel:
     """ BaseModel class that is to be inherited by other models
@@ -19,14 +20,14 @@ class BaseModel:
             for key, value in kwargs.items():
                 if key not in excluded_keys:
                     if isinstance(value, str) and (key == 'created_at' or key == 'updated_at'):
-                        value = datetime.fromisoformat(value)
+                        value = datetime.datetime.fromisoformat(value)
                     setattr(self, key, value)
 
         else:
 
                     self.id = str(uuid.uuid4())
-                    self.created_at = datetime.now().isoformat()
-                    self.updated_at = None
+                    self.created_at = datetime.datetime.now()
+                    self.updated_at = datetime.datetime.now()
 
     """ methods/setters/getters """
 
@@ -36,17 +37,17 @@ class BaseModel:
     def save(self):
         """updates updated_at attribute"""
 
-        self.updated_at = datetime.now().isoformat()
+        self.updated_at = datetime.datetime.now()
 
     def to_dict(self):
         """ returns dictionary keyword/value representations of attributes"""
 
         return {
-            "name": self.name,
             "my_number": self.my_number,
-            "id": self.id,
-            "created_at": self.created_at,
-            "updated_at": self.updated_at,
+            "name": self.name,
             "__class__": self.__class__.__name__,
+            "updated_at": self.updated_at.isoformat(),
+            "id": self.id,
+            "created_at": self.created_at.isoformat(),
 
         }
