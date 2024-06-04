@@ -10,15 +10,15 @@ class HBNBCommand(cmd.Cmd):
         """ Handles empty lines """
         return False
 
-    def quit_cmd(self, line):
+    def do_quit(self, line):
         """ Command to exit program """
         return True
 
-    def EOF_cmd(self, line):
+    def do_EOF(self, line):
         """" Command to exit the program on EOF """
         return True
 
-    def create_cmd(self, line):
+    def do_create(self, line):
         args = line.split()
         if len(args)!= 1:
             print("** class name missing **")
@@ -31,7 +31,7 @@ class HBNBCommand(cmd.Cmd):
         obj.save()
         print(obj.id)
 
-    def show_cmd(self, line):
+    def do_show(self, line):
         args = line.split()
         if len(args) < 2:
             print("** class name missing **")
