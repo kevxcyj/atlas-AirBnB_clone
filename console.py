@@ -40,6 +40,11 @@ class HBNBCommand(cmd.Cmd):
         return True
 
     def do_create(self, line):
+        """creates an instance of given class
+
+            line(str): user-input command 
+                arg[0]: class name
+        """
         args = line.split()
         if len(args) == 0:
             print("** class name missing **")
@@ -53,6 +58,12 @@ class HBNBCommand(cmd.Cmd):
             storage.save()
 
     def do_show(self, line):
+        """prints string rep of an instance
+
+            line(str): console-input command
+                arg[0]: class name
+                arg[1]: instance id
+        """
         args = line.split()
         if len(args) == 0:
             print("** class name missing **")
@@ -73,6 +84,12 @@ class HBNBCommand(cmd.Cmd):
         print(obj)
 
     def do_destroy(self, args):
+        """ destroys an instance
+
+            args: console-input command
+                args[0]: className
+                args[1]: instance id
+        """
         arg = args.split()
         instance_dict = storage.all()
         if len(arg) == 0:
@@ -109,6 +126,14 @@ class HBNBCommand(cmd.Cmd):
                     return
 
     def do_update(self, arg):
+        """updates an instance with values to their given attribute.
+
+            arg: console-input command
+                arg[0]: className class name of given instanceId
+                arg[1]: instandId of given instance of class
+                arg[2]: attr_name of attribute to be set for given instance
+                arg[3]: value for the attribute refrenced in attr_name
+        """
         args = arg.split()
         instance_dict = storage.all()
         if len(args) == 0:
