@@ -20,7 +20,7 @@ class BaseModel:
             excluded_keys = ['__class__']
             for key, value in kwargs.items():
                 if key not in excluded_keys:
-                    if isinstance(value, str) and (key == 'created_at' or 
+                    if isinstance(value, str) and (key == 'created_at' or
                                                    key == 'updated_at'):
                         value = datetime.datetime.fromisoformat(value)
                     setattr(self, key, value)
