@@ -20,7 +20,7 @@ This is the console, known as HBNB, which is used to create, change, delete and 
 
 ## Usage
 
-Once entering the consoole, the prompt will appear as 
+Once entering the console, the prompt will appear as 
 
 (hbnb)
 
