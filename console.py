@@ -63,17 +63,18 @@ class HBNBCommand(cmd.Cmd):
             return
         objectId = args[1]
         key = f'{className}.{objectId}'
-        obj = storage.all()
-        if key not in obj:
+        obj = storage.all().get(key)
+        if obj is None:
             print("** no instance found **")
             return
-        print(str(obj))
+        print(obj)
 
     def do_destroy(self, args):
         if len(args) < 2:
             print("** class name missing **")
             return
-        className, id = args[:2]
+        className = args[0]
+        id = args[1]
         if className not in HBNBCommand.current_classes:
             print("** class doesn't exist **")
             return
