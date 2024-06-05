@@ -36,7 +36,6 @@ Creates a new instance of BaseModel using the create command.
 (hbnb)help
 
 Documented commands (type help <topic>):
-========================================
 EOF  help  quit
 
 Lists commands that are documented.
