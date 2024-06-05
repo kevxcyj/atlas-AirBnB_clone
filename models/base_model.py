@@ -30,7 +30,7 @@ class BaseModel:
             self.created_at = datetime.datetime.now()
             self.updated_at = datetime.datetime.now()
             models.storage.new(self)
-        
+
     """ methods/setters/getters """
 
     def __str__(self):
