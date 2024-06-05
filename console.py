@@ -37,7 +37,7 @@ class HBNBCommand(cmd.Cmd):
     
     def do_create(self, line):
         args = line.split()
-        if len(args)!= 1:
+        if len(args) == 0:
             print("** class name missing **")
             return
         className = args[0]
@@ -45,8 +45,9 @@ class HBNBCommand(cmd.Cmd):
             print("** class doesn't exist **")
             return
         else:
-            storage.save()
             print(eval(args[0])().id)
+            storage.save()
+            
 
     def do_show(self, line):
         args = line.split()
@@ -104,17 +105,17 @@ class HBNBCommand(cmd.Cmd):
             print("** class name missing **")
             return
         className, id, attr_name, attr_value = args[:4]
-        if className not in self.storage.classes:
+        if className != HBNBCommand.current_classes:
             print("** class doesn't exist **")
             return
-        if id not in self.storage.classes:
+        if id not in HBNBCommand.current_classes:
             print(" ** no instance found **")
             return
-        if attr_name not in self.storage.instances[className][id]:
+        if attr_name not in self.storage.all[className][id]:
             print("** attribute name missing **")
             return
 
-        self.storage.instances[className][id][attr_name] = attr_value
+        self.storagea.all[className][id][attr_name] = attr_value
     
 
 if __name__ == '__main__':
