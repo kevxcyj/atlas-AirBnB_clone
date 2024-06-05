@@ -108,6 +108,12 @@ class HBNBCommand(cmd.Cmd):
             storage.save()
 
     def do_all(self, args):
+        """ prints str rep of all instances in a given class
+            or all instances in storage.all
+
+            args: console-input command
+                args[0]: className
+        """
         insts = storage.all()
         if len(args) == 0:
             for instance_id in insts.keys():
