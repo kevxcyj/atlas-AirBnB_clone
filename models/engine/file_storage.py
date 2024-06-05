@@ -19,10 +19,6 @@ class FileStorage:
         self.__file_path = file_path
         self.__objects = objects
         self.classes = {}
-        new_object = BaseModel()
-        storage.new(new.object)
-
-        storage.save()
 
     """methods/setters/getters"""
 
