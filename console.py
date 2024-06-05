@@ -50,19 +50,20 @@ class HBNBCommand(cmd.Cmd):
 
     def do_show(self, line):
         args = line.split()
-        if len(args) < 2:
+        if len(args) == 0:
             print("** class name missing **")
             return
         className = args[0]
         if className not in HBNBCommand.current_classes:
             print("** class doesn't exist **")
             return
-        if len(args) < 3:
+        if len(args) == 1:
             print("** instance id missing **")
             return
         objectId = args[1]
-        obj = storage.get(className, objectId)
-        if obj is None:
+        key = f'{className}.{objectId}'
+        obj = storage.all()
+        if key not in obj:
             print("** no instance found **")
             return
         print(str(obj))
@@ -81,12 +82,22 @@ class HBNBCommand(cmd.Cmd):
         del self.storage.instances[className][id]
 
     def do_all(self, args):
-        if len(args) > 0 and args[0]!= "BaseModel":
-            print("** class doesn't exist **")
-            return
-        for className in self.storage.classes:
-            for obj_id, obj in self.storage.instances[className].items():
-                print("[{}] ({}) {}".format(className, obj_id, obj)) 
+        instances = storage.all()
+        if len(args) == 0:
+            for instance_id in instances.keys():
+                print(f"{instances[instance_id]}")
+        else:
+            arg = args.split()
+
+            if len(arg) > 0:
+                className = arg[0]
+                if className in HBNBCommand.current_classes:
+                    for instance_id in instances.keys():
+                        if instances[instance_id].__class__.__name__ == className:
+                            print(f"{instances[instance_id]}")
+                else:
+                    print("** class doesn't exist **")
+                    return
 
     def do_update(self,args):
         if len(args) < 3:
