@@ -141,7 +141,6 @@ class HBNBCommand(cmd.Cmd):
                 arg[3]: value for the attribute refrenced in attr_name
         """
         args = arg.split()
-        instance_dict = storage.all()
         if len(args) == 0:
             print("** class name missing **")
             return
