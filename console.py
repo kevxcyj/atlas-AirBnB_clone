@@ -19,7 +19,8 @@ class HBNBCommand(cmd.Cmd):
                        'Amenity',
                        'City',
                        'State',
-                       'Place'
+                       'Place',
+                       'Review'
                        }
 
     def handle_empty_line(self):
