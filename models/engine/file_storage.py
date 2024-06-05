@@ -15,7 +15,6 @@ class FileStorage:
             __objects: dictionary, keys/instances of objects to be converted
     """
 
-
     def __init__(self, file_path='file.json', objects={}):
         self.__file_path = file_path
         self.__objects = objects
@@ -41,7 +40,7 @@ class FileStorage:
         obj_dict = dict()
         for key, value in self.__objects.items():
             obj_dict[key] = self.__objects[key].to_dict()
-        with open (self.__file_path, "w") as f:
+        with open(self.__file_path, "w") as f:
             f.write(json.dumps(obj_dict))
 
     def reload(self):
