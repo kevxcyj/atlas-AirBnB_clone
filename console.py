@@ -14,9 +14,13 @@ import models
 
 class HBNBCommand(cmd.Cmd):
     prompt = '(hbnb)'
-    current_classes = {'BaseModel', 'User',
-                    'Amenity', 'City', 'State',
-                    'Place'}
+    current_classes = {'BaseModel',
+                       'User',
+                       'Amenity',
+                       'City',
+                       'State',
+                       'Place'
+                       }
 
     def handle_empty_line(self):
         """ Handles empty lines """
@@ -27,14 +31,12 @@ class HBNBCommand(cmd.Cmd):
         return True
 
     def help_quit(self, arg):
-        """
-        """
-        print("Quit command to exit the program")   
+        print("Quit command to exit the program")
 
     def do_EOF(self, line):
-        """" Command to exit the program on EOF """
+        """ Command to exit the program on EOF """
         return True
-    
+
     def do_create(self, line):
         args = line.split()
         if len(args) == 0:
@@ -47,7 +49,6 @@ class HBNBCommand(cmd.Cmd):
         else:
             print(eval(args[0])().id)
             storage.save()
-            
 
     def do_show(self, line):
         args = line.split()
@@ -79,7 +80,7 @@ class HBNBCommand(cmd.Cmd):
             print("** class doesn't exist **")
         elif len(arg) == 1:
             print("** instance id missing **")
-        
+
         elif f"{arg[0]}.{arg[1]}" not in instance_dict:
             print("** no instance found **")
         else:
@@ -88,24 +89,24 @@ class HBNBCommand(cmd.Cmd):
             storage.save()
 
     def do_all(self, args):
-        instances = storage.all()
+        insts = storage.all()
         if len(args) == 0:
-            for instance_id in instances.keys():
-                print(f"{instances[instance_id]}")
+            for instance_id in insts.keys():
+                print(f"{insts[instance_id]}")
         else:
             arg = args.split()
 
             if len(arg) > 0:
                 className = arg[0]
                 if className in HBNBCommand.current_classes:
-                    for instance_id in instances.keys():
-                        if instances[instance_id].__class__.__name__ == className:
-                            print(f"{instances[instance_id]}")
+                    for instance_id in insts.keys():
+                        if insts[instance_id].__class__.__name__ == className:
+                            print(f"{insts[instance_id]}")
                 else:
                     print("** class doesn't exist **")
                     return
 
-    def do_update(self,arg):
+    def do_update(self, arg):
         args = arg.split()
         instance_dict = storage.all()
         if len(args) == 0:
@@ -133,5 +134,8 @@ class HBNBCommand(cmd.Cmd):
         setattr(instance, attr_name, value)
         storage.save()
 
+
 if __name__ == '__main__':
+
+    
     HBNBCommand().cmdloop()
