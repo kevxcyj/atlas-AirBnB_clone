@@ -1,6 +1,6 @@
 #!/bin/usr/python3
 """review class module"""
-
+from models.base_model import BaseModel
 
 class Review(BaseModel):
     """Review class inherits from BaseModel
