@@ -24,7 +24,7 @@ class HBNBCommand(cmd.Cmd):
                        'Review'
                        }
 
-    def handle_empty_line(self):
+    def emptyline(self):
         """ Handles empty lines """
         pass
 
