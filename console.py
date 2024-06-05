@@ -108,9 +108,6 @@ class HBNBCommand(cmd.Cmd):
     def do_update(self,arg):
         args = arg.split()
         instance_dict = storage.all()
-        if len(args) != 2:
-            print("** instance id is missing **")
-            return
         if len(args) != 3:
             print("** attribute name missing **")
             return
