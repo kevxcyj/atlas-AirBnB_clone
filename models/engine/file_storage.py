@@ -15,6 +15,7 @@ class FileStorage:
             __objects: dictionary, keys/instances of objects to be converted
     """
 
+
     def __init__(self, file_path='file.json', objects={}):
         self.__file_path = file_path
         self.__objects = objects
@@ -25,10 +26,10 @@ class FileStorage:
     def all(self):
         """returns the object dictionaries"""
         return self.__objects
-    
+
     def new(self, obj):
         """sets an object to the dictionary.
-        
+
             variables:
                 obj(class instance): instance of a class
         """
