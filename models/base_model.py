@@ -20,3 +20,6 @@ class BaseModel:
             "__class__": self.__class__.__name__,
             **self.__dict__
         }
+
+    def __str__(self):
+        return f"[{self.__class__.__name__}] ({self.id}) {self.__dict__}"
