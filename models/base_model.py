@@ -6,10 +6,22 @@ from datetime import datetime
 
 class BaseModel:
 
-    def __init__(self):
-        self.id = str(uuid.uuid4())
-        self.created_at = datetime.now().isoformat()
-        self.updated_at = datetime.now().isoformat()
+    def __init__(self, *args, **kwargs):
+        if args:
+            raise TypeError("__init__() takes no positional arguments")
+        
+        if kwargs:
+            self.__dict__.update(kwargs)
+
+        if 'created_at' in kwargs:
+            self.created_at = datetime.fromisoformat(kwargs['created_at'])
+        if 'updated_at' in kwargs:
+            self.updated_at = datetime.fromisoformat(kwargs['updated_at'])
+
+        else:
+            self.id = str(uuid.uuid4())
+            self.created_at = datetime.now().isoformat()
+            self.updated_at = datetime.now().isoformat()
 
 
     def save(self):
