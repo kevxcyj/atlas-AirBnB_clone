@@ -4,7 +4,7 @@ import uuid
 import datetime
 
 
-class BaseModel
+class BaseModel:
 
 def __init__(self):
     self.id = str(uuid.uuid4())
