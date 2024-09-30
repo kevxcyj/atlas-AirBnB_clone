@@ -34,6 +34,7 @@ class BaseModel:
         return {
             "__class__": self.__class__.__name__,
             **self.__dict__
+            
         }
 
     def __str__(self):
