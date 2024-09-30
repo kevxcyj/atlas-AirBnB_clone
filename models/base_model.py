@@ -2,7 +2,7 @@
 
 import uuid
 from datetime import datetime
-import models
+from models.storage import storage
 
 
 class BaseModel:
