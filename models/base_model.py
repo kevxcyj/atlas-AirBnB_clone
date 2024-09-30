@@ -2,6 +2,7 @@
 
 import uuid
 from datetime import datetime
+from models.engine.file_storage import storage
 
 
 class BaseModel:
@@ -12,7 +13,6 @@ class BaseModel:
         
         if kwargs:
             self.__dict__.update(kwargs)
-
         if 'created_at' in kwargs:
             self.created_at = datetime.fromisoformat(kwargs['created_at'])
         if 'updated_at' in kwargs:
@@ -23,9 +23,12 @@ class BaseModel:
             self.created_at = datetime.now().isoformat()
             self.updated_at = datetime.now().isoformat()
 
+            storage.new(self)
+
 
     def save(self):
         self.updated_at = datetime.now().isoformat()
+        storage.save()
 
     def to_dict(self):
         return {
