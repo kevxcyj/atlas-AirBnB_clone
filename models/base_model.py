@@ -2,7 +2,7 @@
 
 import uuid
 from datetime import datetime
-from models.file_storage import storage
+import models
 
 
 
