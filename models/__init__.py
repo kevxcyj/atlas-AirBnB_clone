@@ -1,7 +1,6 @@
 #!/bin/usr/python3
 
 
-from models.engine.file_storage import FileStorage
+from .engine.file_storage import FileStorage
 
 storage = FileStorage()
- 
