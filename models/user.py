@@ -1,4 +1,4 @@
-import BaseModel from base_model
+from base_model import BaseModel
 
 class user(BaseModel):
         email = ''
