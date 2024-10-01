@@ -48,6 +48,20 @@ class HBNBCommand(cmd.Cmd):
         except Exception as e:
             print(f"{e}")
 
+    def do_update(self, arg):
+        """ Updates instance """
+        try:
+            cls_name, obj_id, attr_name, value = arg.split()
+            obj = storage.all()[f"{cls_name}.{obj_id}"]
+            setattr(obj, attr_name, eval(value))
+            storage.save()
+        except KeyError:
+            print("** no instance found **")
+        except AttributeError:
+            print("** attribute doesn't exist **")
+        except Exception as e:
+            print(f"{e}")
+
 
     def do_EOF(self, arg):
         """ End of file """
