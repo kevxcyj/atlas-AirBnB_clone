@@ -19,6 +19,34 @@ class HBNBCommand(cmd.Cmd):
         except Exception as e:
             print(f"{e}")
 
+    def do_all(self, arg):
+        """ Prints string representations based on class name  """
+        try:
+            cls_name = arg.split()[0]
+            print([obj for obj in storage.all().values() if isinstance(obj, eval(cls_name))])
+        except NameError:
+            print("[BaseModel] " + "\n".join([str(obj) for obj in storage.all().values()]))
+
+    def do_show(self, arg):
+        """ Prints string representaion based on class/id """
+        try:
+            cls_name, obj_id = arg.split()
+            obj = storage.all()[f"{cls_name}.{obj_id}"]
+            print(obj)
+        except KeyError:
+            print("** no instance found **")
+        except Exception as e:
+            print(f"{e}")
+            
+    def do_destroy(self, arg):
+        try:
+            cls_name, obj_id = arg.split()
+            storage.delete(storage.all()[f"{cls_name}.{obj_id}"])
+            storage.save()
+        except KeyError:
+            print("** no instance found **")
+        except Exception as e:
+            print(f"{e}")
 
 
     def do_EOF(self, arg):
