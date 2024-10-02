@@ -1,5 +1,5 @@
 #!/usr/bin/python3
-" Entry for command interperter "
+""" Entry for command interperter """
 import cmd
 from models import storage
 from models.user import User
@@ -40,6 +40,7 @@ class HBNBCommand(cmd.Cmd):
             print(f"{e}")
             
     def do_destroy(self, arg):
+        """ Method for destorying previous representation """
         try:
             cls_name, obj_id = arg.split()
             storage.delete(storage.all()[f"{cls_name}.{obj_id}"])
